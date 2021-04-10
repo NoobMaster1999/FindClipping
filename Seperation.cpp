@@ -15,7 +15,7 @@ Findclipping::Findclipping() :
     plugin = new Seperation();
     
     for(int i=0; i < numSources; ++i)
-        masks.set(i,new ISSMask(10,10));
+        masks.set(i,new Seperation(10,10));
     
 
 
@@ -85,7 +85,7 @@ void Findclipping::addTraining(unsigned int source, unsigned int xmin, unsigned 
     needsTraining = true;
     
     listeners.call (&Findclipping::Listener::engineTrainingChanged);
-    postEvent(ISSEPluginEvent::Training);
+    postEvent(PluginEvent::Training);
 }
 
 void Findclipping::subtractTraining(unsigned int source, unsigned int xmin, unsigned int xmax)
@@ -100,7 +100,7 @@ void Findclipping::subtractTraining(unsigned int source, unsigned int xmin, unsi
     needsTraining = true;
     
     listeners.call (&Findclipping::Listener::engineTrainingChanged);
-    postEvent(ISSEPluginEvent::Training);
+    postEvent(PluginEvent::Training);
 }
   
 void Findclipping::shutdown()
@@ -138,7 +138,7 @@ void Findclipping::clearTraining()
     trainingIndsToSource.clear();
     needsTraining = true;
     listeners.call (&Findclipping::Listener::engineTrainingChanged);
-    postEvent(ISSEPluginEvent::Training);
+    postEvent(PluginEvent::Training);
 }
 
 void Findclipping::start()
